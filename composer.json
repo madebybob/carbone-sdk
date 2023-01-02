@@ -1,8 +1,8 @@
 {
-    "name": "madebybob/carbone",
+    "name": "madebybob/carbone-sdk",
     "description": "Carbone SDK for PHP",
     "type": "library",
-    "homepage": "https://github.com/madebybob/carbone",
+    "homepage": "https://github.com/madebybob/carbone-sdk",
     "license": "MIT",
     "autoload": {
         "psr-4": {
