@@ -8,8 +8,6 @@ Carbone is a powerful and easy to use API to convert documents from a template t
 
 ## Installation
 
-### Composer
-
 You can install the bindings via [Composer](http://getcomposer.org/). Run the following command:
 
 ```bash
@@ -28,7 +26,9 @@ use MadeByBob\Carbone\Carbone;
 $carbone = new Carbone('YOUR_API_KEY');
 ```
 
-### Upload a template
+### Templates
+
+#### Upload a template
 
 You can upload a template to Carbone using the `upload` method. This method takes the contents of the template as a parameter.
 
@@ -38,7 +38,17 @@ $response = $carbone->templates()->upload($content);
 $templateId = $response->getTemplateId();
 ```
 
-### Render a template
+#### Delete a template
+
+You can delete a template using the `delete` method. This method takes the template ID as a parameter.
+
+```php
+$response = $carbone->templates()->delete($templateId);
+```
+
+### Renders
+
+#### Render a template
 
 You can render a template using the `render` method. This method takes the template ID and the data as parameters.
 
@@ -48,7 +58,7 @@ $response = $carbone->renders()->render($templateId, $data);
 $renderId = $response->getRenderId();
 ```
 
-### Download a rendered template
+#### Download a rendered template
 
 You can download a rendered template using the `download` method. This method takes the render ID as a parameter.
 
@@ -57,12 +67,4 @@ $response = $carbone->renders()->download($renderId);
 
 // Save the contents of the file yourself on your filesystem
 $content = $response->getContent();
-```
-
-### Delete a template
-
-You can delete a template using the `delete` method. This method takes the template ID as a parameter.
-
-```php
-$response = $carbone->templates()->delete($templateId);
 ```
