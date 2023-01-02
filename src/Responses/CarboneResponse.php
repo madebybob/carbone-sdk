@@ -8,6 +8,14 @@ use MadeByBob\Carbone\Exceptions\CarboneRequestException;
 class CarboneResponse extends SaloonResponse
 {
     /**
+     * Override `clientError` to throw an error when the `success` key is false.
+     */
+    public function clientError(): bool
+    {
+        return parent::clientError() || $this->json('success') === false || ! ! $this->json('error', false);
+    }
+
+    /**
      * Create an exception if a server or client error occurred.
      *
      * @return CarboneRequestException

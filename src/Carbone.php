@@ -2,78 +2,59 @@
 
 namespace MadeByBob\Carbone;
 
-use MadeByBob\Carbone\Responses\CarboneResponse;
 use Sammyjo20\Saloon\Http\SaloonConnector;
+use MadeByBob\Carbone\Responses\CarboneResponse;
 use Sammyjo20\Saloon\Traits\Plugins\AcceptsJson;
-use MadeByBob\Carbone\Requests\ExampleRequestCollection;
+use MadeByBob\Carbone\Requests\RendersCollection;
+use Sammyjo20\Saloon\Http\Auth\TokenAuthenticator;
+use MadeByBob\Carbone\Requests\TemplatesCollection;
+use Sammyjo20\Saloon\Interfaces\AuthenticatorInterface;
 
 /**
- * @method ExampleRequestCollection example
+ * @method TemplatesCollection templates
+ * @method RendersCollection renders
  */
 class Carbone extends SaloonConnector
 {
     use AcceptsJson;
 
-    /**
-     * Define the base URL for the API
-     *
-     * @var string
-     */
-    protected string $apiBaseUrl = ':base_url';
-
-    /**
-     * Custom response that all requests will return.
-     *
-     * @var string|null
-     */
     protected ?string $response = CarboneResponse::class;
 
-    /**
-     * The requests/services on the Carbone.
-     *
-     * @var array
-     */
     protected array $requests = [
-        'example' => ExampleRequestCollection::class,
+        'templates' => TemplatesCollection::class,
+        'renders' => RendersCollection::class,
     ];
 
-    /**
-     * Define the base URL of the API.
-     *
-     * @return string
-     */
     public function defineBaseUrl(): string
     {
-        return $this->apiBaseUrl;
+        return 'https://api.carbone.io/';
     }
 
-    /**
-     * @param string|null $baseUrl
-     */
-    public function __construct(string $baseUrl = null)
+    public function __construct(
+        private string $token
+    ) {
+    }
+
+    public function defaultAuth(): ?AuthenticatorInterface
     {
-        if (isset($baseUrl)) {
-            $this->apiBaseUrl = $baseUrl;
-        }
+        return new TokenAuthenticator($this->token);
     }
 
-    /**
-     * Define any default headers.
-     *
-     * @return array
-     */
     public function defaultHeaders(): array
     {
-        return [];
+        return [
+            'carbone-version' => '4',
+            'Content-Type' => 'application/json',
+        ];
     }
 
-    /**
-     * Define any default config.
-     *
-     * @return array
-     */
     public function defaultConfig(): array
     {
         return [];
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
     }
 }
