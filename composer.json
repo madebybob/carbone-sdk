@@ -24,8 +24,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.5",
-        "pestphp/pest": "^1.21",
-        "spatie/ray": "^1.33"
+        "pestphp/pest": "^1.21"
     },
     "scripts": {
         "test": [
