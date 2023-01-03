@@ -30,6 +30,12 @@
         "test": [
             "./vendor/bin/pest"
         ],
+        "test:unit": [
+            "./vendor/bin/pest tests/Unit"
+        ],
+        "test:integration": [
+            "./vendor/bin/pest tests/Integration"
+        ],
         "fix-code": [
             "./vendor/bin/php-cs-fixer fix"
         ]
