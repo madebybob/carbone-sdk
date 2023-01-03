@@ -2,6 +2,8 @@
 
 This package provides a PHP SDK for the [Carbone.io](https://carbone.io) API.
 
+![Cover](https://raw.githubusercontent.com/madebybob/carbone-sdk/master/.github/cover.png)
+
 ## About Carbone
 
 Carbone is a powerful and easy to use API to convert documents from a template to a PDF. It is based on LibreOffice and can convert any document supported by LibreOffice. It is also possible to convert HTML to PDF.
