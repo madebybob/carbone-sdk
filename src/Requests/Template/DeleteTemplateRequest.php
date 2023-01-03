@@ -19,7 +19,7 @@ class DeleteTemplateRequest extends Request
 
     public function defineEndpoint(): string
     {
-        return '/template' . $this->templateId;
+        return '/template/' . $this->templateId;
     }
 
 }

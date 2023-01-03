@@ -7,4 +7,6 @@ it('can make an instance', function () {
     $carbone = (new Carbone(getCarboneToken()));
 
     expect($carbone)->toBeInstanceOf(Carbone::class);
+
+    expect($carbone->getToken())->toBe('abc');
 });
